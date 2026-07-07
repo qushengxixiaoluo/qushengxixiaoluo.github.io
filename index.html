@@ -275,8 +275,16 @@
             background: linear-gradient(90deg, #0553a1, #40d0fd);
         }
 
-        .project-card--claude::before {
-            background: linear-gradient(90deg, var(--accent), var(--pink));
+        .project-card--poetry::before {
+            background: linear-gradient(90deg, #b45389, #f59e0b);
+        }
+
+        .project-card--vue::before {
+            background: linear-gradient(90deg, #3fb984, #34495e);
+        }
+
+        .project-card--html::before {
+            background: linear-gradient(90deg, #e44d26, #f16529);
         }
 
         .project-card:hover {
@@ -326,6 +334,12 @@
 
         .dot--dart {
             background: #00b4ab;
+        }
+        .dot--vue {
+            background: #3fb984;
+        }
+        .dot--html {
+            background: #e44d26;
         }
         .dot--skill {
             background: var(--accent);
@@ -533,7 +547,7 @@
             </div>
             <h1 class="fade-in fade-in--2">qushengxixiaoluo</h1>
             <p class="tagline fade-in fade-in--2">
-                🚀 全栈开发者 · 热爱开源 · 专注于 AI 与 Flutter 跨平台开发
+                🚀 全栈开发者 · 热爱开源 · 专注于 Flutter 跨平台、AI 应用与创意前端开发
             </p>
             <a href="https://github.com/qushengxixiaoluo"
             target="_blank"
@@ -547,7 +561,7 @@
     <!-- Stats -->
     <div class="stats fade-in fade-in--3">
         <div class="stat">
-            <div class="stat-value">2</div>
+            <div class="stat-value">5</div>
             <div class="stat-label">开源项目</div>
         </div>
         <div class="stat">
@@ -595,31 +609,65 @@
         </div>
     </article>
 
-    <!-- dev-env-guide -->
-    <article class="project-card project-card--claude">
-        <div class="project-icon">🛠️</div>
-        <h3>dev-env-guide</h3>
+    <!-- 诗语 - 古诗词 -->
+    <article class="project-card project-card--poetry">
+        <div class="project-icon">📜</div>
+        <h3>诗语 · Appreciation of Ancient Chinese Poetry</h3>
         <p class="project-desc">
-            让 AI 不再盲目扫描全盘找 SDK。这个 Claude Code Skill 教会 AI 优先用环境变量定位工具、安装时自动配置 PATH、卸载后清理残留。<br>
-            <small style="color: var(--text-muted)">Prevent AI from blindly scanning the entire disk to locate SDKs. Enable AI to find tools via environment variables, auto-configure PATH, and clean up after uninstallation.</small>
+            离线古诗词抽签应用，收录百首经典诗词、千古名句与历代作者。每篇诗词配有翻译、赏析与注释，支持明暗古风主题切换，沉浸式传统文化体验。
         </p>
         <div>
-            <span class="project-lang"><span class="dot dot--skill"></span>Claude Code Skill</span>
-        </div>
-        <div class="project-topics">
-            <span class="topic-tag">claude-code</span>
-            <span class="topic-tag">claude-skill</span>
-            <span class="topic-tag">dev-environment</span>
-            <span class="topic-tag">path-configuration</span>
-            <span class="topic-tag">sdk-management</span>
+            <span class="project-lang"><span class="dot dot--dart"></span>Dart · Flutter</span>
         </div>
         <div class="project-links">
-            <a href="https://github.com/qushengxixiaoluo/dev-env-guide"
+            <a href="https://github.com/qushengxixiaoluo/Appreciation_of_Ancient_Chinese_Poetry"
             target="_blank" rel="noopener" class="btn btn-primary">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             源代码
         </a>
+        <a href="https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/"
+        target="_blank" rel="noopener" class="btn btn-pages">
+        🌐 GitHub Pages
+    </a>
+</div>
+</article>
+
+<!-- Campus Market Demo -->
+<article class="project-card project-card--vue">
+    <div class="project-icon">🏫</div>
+    <h3>Campus Market Demo</h3>
+    <p class="project-desc">
+        简易的校园集市软件小 Demo。使用 Vue 构建，模拟校园二手交易与信息发布场景，轻量级前端实践项目。
+    </p>
+    <div>
+        <span class="project-lang"><span class="dot dot--vue"></span>Vue · JavaScript</span>
     </div>
+    <div class="project-links">
+        <a href="https://github.com/qushengxixiaoluo/Campus_Market_Demo"
+        target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        源代码
+    </a>
+</div>
+</article>
+
+<!-- Particle Effect Display -->
+<article class="project-card project-card--html">
+    <div class="project-icon">✨</div>
+    <h3>Particle Effect Display</h3>
+    <p class="project-desc">
+        基于 Three.js 和 MediaPipe 的交互式 3D 粒子系统。支持双手手势控制（右手缩放粒子、左手握拳查看图片/滑动切换）、4 种粒子形状、图片精灵散布、XYZ 轴旋转。纯前端，打开即用。
+    </p>
+    <div>
+        <span class="project-lang"><span class="dot dot--html"></span>HTML · Three.js · MediaPipe</span>
+    </div>
+    <div class="project-links">
+        <a href="https://github.com/qushengxixiaoluo/Particle_Effect_Display"
+        target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        源代码
+    </a>
+</div>
 </article>
 
 </div>
@@ -631,8 +679,10 @@
     <div class="tech-cloud">
         <span class="tech-item"><span class="emoji">📱</span>Flutter / Dart</span>
         <span class="tech-item"><span class="emoji">🤖</span>AI / LLM 集成</span>
-        <span class="tech-item"><span class="emoji">🧩</span>Claude Code Skill</span>
-        <span class="tech-item"><span class="emoji">🔧</span>SDK 管理 & DevOps</span>
+        <span class="tech-item"><span class="emoji">🖼️</span>Vue.js</span>
+        <span class="tech-item"><span class="emoji">✨</span>Three.js / WebGL</span>
+        <span class="tech-item"><span class="emoji">✋</span>MediaPipe 手势识别</span>
+        <span class="tech-item"><span class="emoji">📜</span>中国传统文化</span>
         <span class="tech-item"><span class="emoji">💚</span>心理健康科技</span>
         <span class="tech-item"><span class="emoji">🌐</span>跨平台开发</span>
         <span class="tech-item"><span class="emoji">🎨</span>前端设计</span>
@@ -649,8 +699,12 @@
         </a>
         <a href="https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/"
         target="_blank" rel="noopener" class="btn btn-pages">
-        🌐 Emotion Companion 在线演示
+        🌐 Emotion Companion 演示
     </a>
+    <a href="https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/"
+    target="_blank" rel="noopener" class="btn btn-pages">
+    📜 诗语 · 古诗词 演示
+</a>
 </div>
 </section>
 
