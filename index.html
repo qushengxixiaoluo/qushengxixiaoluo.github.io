@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>qushengxixiaoluo · 个人主页</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #13131a;
+            --surface-2: #1a1a24;
+            --border: #2a2a3a;
+            --text: #e4e4ec;
+            --text-muted: #8888a0;
+            --accent: #7c5cfc;
+            --accent-glow: rgba(124, 92, 252, 0.3);
+            --green: #4ade80;
+            --blue: #60a5fa;
+            --orange: #fb923c;
+            --pink: #f472b6;
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ── Animated Background ── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                linear-gradient(rgba(124, 92, 252, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(124, 92, 252, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 70%);
+        }
+
+        .bg-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-orb--1 {
+            width: 600px;
+            height: 600px;
+            background: var(--accent);
+            top: -200px;
+            right: -100px;
+            animation: float-orb 20s ease-in-out infinite;
+        }
+
+        .bg-orb--2 {
+            width: 400px;
+            height: 400px;
+            background: #38bdf8;
+            bottom: 10%;
+            left: -100px;
+            animation: float-orb 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-orb {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(60px, -60px) scale(1.1);
+            }
+            66% {
+                transform: translate(-30px, 40px) scale(0.9);
+            }
+        }
+
+        /* ── Container ── */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ── Header / Hero ── */
+        .hero {
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .avatar-wrapper {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 28px;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--border);
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background: conic-gradient(from 0deg, var(--accent), var(--blue), var(--pink), var(--accent)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: ring-rotate 4s linear infinite;
+        }
+
+        @keyframes ring-rotate {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .avatar-wrapper:hover .avatar {
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--accent-glow);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #e4e4ec 0%, #c4b5fd 40%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .hero .tagline {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0 auto 24px;
+        }
+
+        .hero .gh-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+        }
+
+        .hero .gh-link:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .hero .gh-link svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        /* ── Stats ── */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 32px 0 50px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* ── Section ── */
+        .section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        /* ── Project Cards ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+        }
+
+        .project-card--flutter::before {
+            background: linear-gradient(90deg, #0553a1, #40d0fd);
+        }
+
+        .project-card--claude::before {
+            background: linear-gradient(90deg, var(--accent), var(--pink));
+        }
+
+        .project-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--accent-glow);
+        }
+
+        .project-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .project-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            margin-bottom: 16px;
+            flex: 1;
+        }
+
+        .project-lang {
+            display: inline-block;
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 100px;
+            background: var(--surface-2);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            margin-bottom: 18px;
+        }
+
+        .project-lang .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 6px;
+            vertical-align: middle;
+        }
+
+        .dot--dart {
+            background: #00b4ab;
+        }
+        .dot--skill {
+            background: var(--accent);
+        }
+
+        .project-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 18px;
+        }
+
+        .topic-tag {
+            font-size: 0.72rem;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: rgba(124, 92, 252, 0.1);
+            color: #c4b5fd;
+            border: 1px solid rgba(124, 92, 252, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #6d4de0;
+            box-shadow: 0 4px 20px var(--accent-glow);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: rgba(124, 92, 252, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .btn-pages {
+            background: rgba(74, 222, 128, 0.1);
+            color: var(--green);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+        }
+
+        .btn-pages:hover {
+            background: rgba(74, 222, 128, 0.2);
+            border-color: var(--green);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.2);
+        }
+
+        /* ── Tech Stack ── */
+        .tech-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-item {
+            padding: 8px 18px;
+            border-radius: 100px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            font-size: 0.88rem;
+            color: var(--text);
+            transition: all 0.25s ease;
+        }
+
+        .tech-item:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 16px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .tech-item .emoji {
+            margin-right: 6px;
+        }
+
+        /* ── Contact ── */
+        .contact-section {
+            padding: 50px 0 80px;
+            text-align: center;
+        }
+
+        .contact-section .section-title {
+            justify-content: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            text-align: center;
+            padding: 32px 0;
+            border-top: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .stats {
+                gap: 24px;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .avatar {
+                width: 90px;
+                height: 90px;
+            }
+        }
+
+        /* ── Fade-in animation ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fade-in-up 0.7s ease forwards;
+        }
+
+        .fade-in--1 {
+            animation-delay: 0s;
+        }
+        .fade-in--2 {
+            animation-delay: 0.15s;
+        }
+        .fade-in--3 {
+            animation-delay: 0.3s;
+        }
+        .fade-in--4 {
+            animation-delay: 0.45s;
+        }
+
+        @keyframes fade-in-up {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-orb bg-orb--1"></div>
+    <div class="bg-orb bg-orb--2"></div>
+
+    <div class="container">
+
+        <!-- Hero -->
+        <header class="hero">
+            <div class="avatar-wrapper fade-in fade-in--1">
+                <div class="avatar-ring"></div>
+                <img class="avatar"
+                src="https://avatars.githubusercontent.com/u/205567041?v=4"
+                alt="qushengxixiaoluo avatar"
+                loading="eager">
+            </div>
+            <h1 class="fade-in fade-in--2">qushengxixiaoluo</h1>
+            <p class="tagline fade-in fade-in--2">
+                🚀 全栈开发者 · 热爱开源 · 专注于 AI 与 Flutter 跨平台开发
+            </p>
+            <a href="https://github.com/qushengxixiaoluo"
+            target="_blank"
+            rel="noopener"
+            class="gh-link fade-in fade-in--3">
+            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            访问 GitHub 主页
+        </a>
+    </header>
+
+    <!-- Stats -->
+    <div class="stats fade-in fade-in--3">
+        <div class="stat">
+            <div class="stat-value">2</div>
+            <div class="stat-label">开源项目</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">0</div>
+            <div class="stat-label">Followers</div>
+        </div>
+        <div class="stat">
+            <div class="stat-value">2</div>
+            <div class="stat-label">Following</div>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <section class="section fade-in fade-in--4">
+        <h2 class="section-title">📦 开源项目</h2>
+        <div class="projects-grid">
+
+            <!-- Emotion Companion Assistant -->
+            <article class="project-card project-card--flutter">
+                <div class="project-icon">🧠</div>
+                <h3>Emotion Companion Assistant</h3>
+                <p class="project-desc">
+                    一款轻量化治愈系心理健康情绪陪伴 Flutter 应用。集成 AI 聊天机器人、情绪分析和 OpenAI API，为用户提供温暖的心理支持与陪伴。
+                </p>
+                <div>
+                    <span class="project-lang"><span class="dot dot--dart"></span>Dart · Flutter</span>
+                </div>
+                <div class="project-topics">
+                    <span class="topic-tag">ai-chatbot</span>
+                    <span class="topic-tag">emotion-analysis</span>
+                    <span class="topic-tag">flutter</span>
+                    <span class="topic-tag">mental-health</span>
+                    <span class="topic-tag">openai-api</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/qushengxixiaoluo/Emotion_Companion_Assistant"
+                    target="_blank" rel="noopener" class="btn btn-primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    源代码
+                </a>
+                <a href="https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/"
+                target="_blank" rel="noopener" class="btn btn-pages">
+                🌐 GitHub Pages
+            </a>
+        </div>
+    </article>
+
+    <!-- dev-env-guide -->
+    <article class="project-card project-card--claude">
+        <div class="project-icon">🛠️</div>
+        <h3>dev-env-guide</h3>
+        <p class="project-desc">
+            让 AI 不再盲目扫描全盘找 SDK。这个 Claude Code Skill 教会 AI 优先用环境变量定位工具、安装时自动配置 PATH、卸载后清理残留。<br>
+            <small style="color: var(--text-muted)">Prevent AI from blindly scanning the entire disk to locate SDKs. Enable AI to find tools via environment variables, auto-configure PATH, and clean up after uninstallation.</small>
+        </p>
+        <div>
+            <span class="project-lang"><span class="dot dot--skill"></span>Claude Code Skill</span>
+        </div>
+        <div class="project-topics">
+            <span class="topic-tag">claude-code</span>
+            <span class="topic-tag">claude-skill</span>
+            <span class="topic-tag">dev-environment</span>
+            <span class="topic-tag">path-configuration</span>
+            <span class="topic-tag">sdk-management</span>
+        </div>
+        <div class="project-links">
+            <a href="https://github.com/qushengxixiaoluo/dev-env-guide"
+            target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            源代码
+        </a>
+    </div>
+</article>
+
+</div>
+</section>
+
+<!-- Tech Stack -->
+<section class="section" style="animation-delay: 0.6s">
+    <h2 class="section-title">🛠️ 技术栈</h2>
+    <div class="tech-cloud">
+        <span class="tech-item"><span class="emoji">📱</span>Flutter / Dart</span>
+        <span class="tech-item"><span class="emoji">🤖</span>AI / LLM 集成</span>
+        <span class="tech-item"><span class="emoji">🧩</span>Claude Code Skill</span>
+        <span class="tech-item"><span class="emoji">🔧</span>SDK 管理 & DevOps</span>
+        <span class="tech-item"><span class="emoji">💚</span>心理健康科技</span>
+        <span class="tech-item"><span class="emoji">🌐</span>跨平台开发</span>
+        <span class="tech-item"><span class="emoji">🎨</span>前端设计</span>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" style="animation-delay: 0.75s">
+    <h2 class="section-title">📬 联系我</h2>
+    <div class="contact-links">
+        <a href="https://github.com/qushengxixiaoluo" target="_blank" rel="noopener" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub 主页
+        </a>
+        <a href="https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/"
+        target="_blank" rel="noopener" class="btn btn-pages">
+        🌐 Emotion Companion 在线演示
+    </a>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2026 <a href="https://github.com/qushengxixiaoluo">qushengxixiaoluo</a> · 使用
+        <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 部署
+        · 🚀 由 Claude Code 生成
+    </p>
+</footer>
+
+</div>
+
+</body>
+</html>
