@@ -3,666 +3,1178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>qushengxixiaoluo · 个人主页</title>
+    <meta name="description" content="qushengxixiaoluo · 产品型全栈开发者。用产品思维定义问题，用工程能力交付答案。Flutter 跨平台 · AI 应用 · 创意前端 · 开源。">
+    <title>qushengxixiaoluo · 产品型全栈开发者</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=ZCOOL+QingKe+HuangYou&family=Noto+Sans+SC:wght@400;500;700;900&family=Spline+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #0a0a0f;
-            --surface: #13131a;
-            --surface-2: #1a1a24;
-            --border: #2a2a3a;
-            --text: #e4e4ec;
-            --text-muted: #8888a0;
-            --accent: #7c5cfc;
-            --accent-glow: rgba(124, 92, 252, 0.3);
-            --green: #4ade80;
-            --blue: #60a5fa;
-            --orange: #fb923c;
-            --pink: #f472b6;
-            --radius: 16px;
-            --radius-sm: 10px;
+            --paper: #FBF6EC;
+            --paper-deep: #F3ECDC;
+            --ink: #111111;
+            --white: #FFFFFF;
+            --orange: #FF6B35;
+            --yellow: #FFD23F;
+            --teal: #17BEBB;
+            --blue: #4D96FF;
+            --pink: #FF5D8F;
+            --green: #6BCB77;
+
+            --border: 3px solid var(--ink);
+            --shadow: 6px 6px 0 var(--ink);
+            --shadow-sm: 4px 4px 0 var(--ink);
+            --shadow-lg: 10px 10px 0 var(--ink);
+
+            --font-en: 'Anton', 'ZCOOL QingKe HuangYou', 'Microsoft YaHei', sans-serif;
+            --font-zh: 'ZCOOL QingKe HuangYou', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+            --font-body: 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            --font-mono: 'Spline Sans Mono', 'Consolas', 'Courier New', monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
+            font-family: var(--font-body);
+            background: var(--paper);
+            background-image: radial-gradient(rgba(17, 17, 17, 0.07) 1.2px, transparent 1.2px);
+            background-size: 22px 22px;
+            color: var(--ink);
+            line-height: 1.75;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        /* ── Animated Background ── */
-        .bg-grid {
-            position: fixed;
-            inset: 0;
-            z-index: 0;
-            background-image:
-                linear-gradient(rgba(124, 92, 252, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(124, 92, 252, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 70%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 30%, transparent 70%);
-        }
+        ::selection { background: var(--yellow); color: var(--ink); }
 
-        .bg-orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(120px);
-            opacity: 0.15;
-            z-index: 0;
-            pointer-events: none;
-        }
+        a { color: inherit; }
 
-        .bg-orb--1 {
-            width: 600px;
-            height: 600px;
-            background: var(--accent);
-            top: -200px;
-            right: -100px;
-            animation: float-orb 20s ease-in-out infinite;
-        }
-
-        .bg-orb--2 {
-            width: 400px;
-            height: 400px;
-            background: #38bdf8;
-            bottom: 10%;
-            left: -100px;
-            animation: float-orb 25s ease-in-out infinite reverse;
-        }
-
-        @keyframes float-orb {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            33% {
-                transform: translate(60px, -60px) scale(1.1);
-            }
-            66% {
-                transform: translate(-30px, 40px) scale(0.9);
-            }
-        }
-
-        /* ── Container ── */
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
+        /* ── Layout ── */
+        .wrap {
+            max-width: 1080px;
             margin: 0 auto;
             padding: 0 24px;
-        }
-
-        /* ── Header / Hero ── */
-        .hero {
-            padding: 100px 0 60px;
-            text-align: center;
-        }
-
-        .avatar-wrapper {
-            display: inline-block;
             position: relative;
-            margin-bottom: 28px;
+            z-index: 2;
         }
 
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 3px solid var(--border);
-            object-fit: cover;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        /* ── Nav ── */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: var(--paper);
+            border-bottom: var(--border);
         }
 
-        .avatar-ring {
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            background: conic-gradient(from 0deg, var(--accent), var(--blue), var(--pink), var(--accent)) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: ring-rotate 4s linear infinite;
+        .nav-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        @keyframes ring-rotate {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .avatar-wrapper:hover .avatar {
-            transform: scale(1.05);
-            box-shadow: 0 0 40px var(--accent-glow);
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #e4e4ec 0%, #c4b5fd 40%, #a5b4fc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-        }
-
-        .hero .tagline {
+        .nav-logo {
+            width: 44px;
+            height: 44px;
+            background: var(--ink);
+            color: var(--paper);
+            display: grid;
+            place-items: center;
+            font-family: var(--font-en);
             font-size: 1.15rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            max-width: 500px;
-            margin: 0 auto 24px;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            border: var(--border);
+            box-shadow: 3px 3px 0 var(--orange);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            flex-shrink: 0;
         }
 
-        .hero .gh-link {
+        .nav-logo:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--orange); }
+        .nav-logo:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--orange); }
+
+        .nav-links {
+            display: flex;
+            gap: 6px;
+            list-style: none;
+            margin-left: auto;
+        }
+
+        .nav-links a {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 7px 14px;
+            border: 2.5px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .nav-links a:hover {
+            border-color: var(--ink);
+            background: var(--yellow);
+            box-shadow: 3px 3px 0 var(--ink);
+            transform: translate(-1px, -1px);
+        }
+
+        .nav-cta {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: var(--ink);
+            color: var(--paper);
+            border: 2.5px solid var(--ink);
+            box-shadow: 3px 3px 0 var(--teal);
+            transition: all 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 var(--teal); }
+        .nav-cta:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--teal); }
+
+        /* ── Hero ── */
+        .hero {
+            position: relative;
+            padding: 72px 0 64px;
+            overflow: hidden;
+            border-bottom: var(--border);
+            background: var(--paper-deep);
+        }
+
+        .hero-mesh {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero .wrap {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 44px;
+            align-items: center;
+        }
+
+        /* avatar — polygon frame with black stroke */
+        .avatar-frame {
+            background: var(--ink);
+            padding: 7px;
+            clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+            box-shadow: 14px 14px 0 var(--yellow);
+            transition: transform 0.3s ease;
+            width: 200px;
+            height: 224px;
+            flex-shrink: 0;
+        }
+
+        .avatar-frame:hover { transform: rotate(-4deg) scale(1.03); }
+
+        .avatar-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            clip-path: polygon(50% 0%, 95% 25%, 95% 75%, 50% 100%, 5% 75%, 5% 25%);
+            background: var(--paper);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            background: var(--teal);
+            border: 2.5px solid var(--ink);
+            box-shadow: 3px 3px 0 var(--ink);
+            padding: 5px 14px;
+            transform: rotate(-1.5deg);
+            margin-bottom: 18px;
+        }
+
+        .hero-name {
+            font-family: var(--font-en);
+            font-size: clamp(2.6rem, 7.4vw, 5.6rem);
+            line-height: 1.02;
+            letter-spacing: 0.01em;
+            color: var(--paper);
+            -webkit-text-stroke: 3.5px var(--ink);
+            text-shadow: 6px 6px 0 var(--ink);
+            word-break: break-word;
+            margin-bottom: 20px;
+        }
+
+        .hero-tagline {
+            display: inline-block;
+            background: var(--ink);
+            color: var(--paper);
+            font-family: var(--font-zh);
+            font-size: clamp(1rem, 2.4vw, 1.3rem);
+            padding: 10px 20px;
+            border: 3px solid var(--ink);
+            box-shadow: 6px 6px 0 var(--pink);
+            transform: rotate(-0.6deg);
+            margin-bottom: 16px;
+        }
+
+        .hero-sub {
+            font-size: 0.98rem;
+            font-weight: 500;
+            max-width: 560px;
+            margin-bottom: 30px;
+            background: rgba(251, 246, 236, 0.85);
+            border: 2.5px solid var(--ink);
+            padding: 8px 16px;
+            display: inline-block;
+        }
+
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* ── Buttons ── */
+        .btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            font-weight: 700;
             text-decoration: none;
-            font-size: 0.95rem;
-            transition: all 0.25s ease;
+            padding: 12px 24px;
+            background: var(--white);
+            color: var(--ink);
+            border: var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            cursor: pointer;
         }
 
-        .hero .gh-link:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 20px var(--accent-glow);
-            transform: translateY(-2px);
+        .btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+        .btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+
+        .btn--ink { background: var(--ink); color: var(--paper); }
+        .btn--yellow { background: var(--yellow); }
+        .btn--teal { background: var(--teal); }
+        .btn--pink { background: var(--pink); }
+        .btn--orange { background: var(--orange); }
+        .btn--blue { background: var(--blue); }
+
+        .btn svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
+
+        /* ── Marquee ── */
+        .marquee {
+            background: var(--yellow);
+            border-bottom: var(--border);
+            overflow: hidden;
+            padding: 12px 0;
         }
 
-        .hero .gh-link svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 26s linear infinite;
+        }
+
+        .marquee-track span {
+            font-family: var(--font-en);
+            font-size: 1.15rem;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            padding-right: 18px;
+        }
+
+        @keyframes marquee {
+            to { transform: translateX(-50%); }
         }
 
         /* ── Stats ── */
         .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 32px 0 50px;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+            padding: 56px 0 8px;
         }
 
         .stat {
-            text-align: center;
+            border: var(--border);
+            box-shadow: var(--shadow);
+            padding: 22px 20px 18px;
+            background: var(--white);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
+        .stat:nth-child(1) { background: var(--yellow); transform: rotate(-1deg); }
+        .stat:nth-child(2) { background: var(--teal); transform: rotate(0.8deg); }
+        .stat:nth-child(3) { background: var(--pink); transform: rotate(-0.6deg); }
+
+        .stat:hover { transform: rotate(0deg) translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+
         .stat-value {
-            font-size: 2rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-family: var(--font-en);
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            line-height: 1.1;
         }
 
         .stat-label {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
             margin-top: 4px;
         }
 
-        /* ── Section ── */
-        .section {
-            padding: 40px 0;
+        /* ── Sections ── */
+        .section { padding: 76px 0 30px; }
+
+        .section-head { margin-bottom: 40px; }
+
+        .kicker {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 4px 12px;
+            transform: rotate(-1deg);
+            margin-bottom: 14px;
         }
 
         .section-title {
-            font-size: 1.5rem;
+            font-family: var(--font-zh);
+            font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+            line-height: 1.25;
+            letter-spacing: 0.02em;
+        }
+
+        .section-title .mark {
+            background: linear-gradient(transparent 55%, var(--yellow) 55%, var(--yellow) 92%, transparent 92%);
+            padding: 0 4px;
+        }
+
+        .section-desc {
+            margin-top: 12px;
+            max-width: 640px;
+            font-size: 1rem;
+            color: #3a3a3a;
+        }
+
+        /* ── PRD / 产品说明书 ── */
+        .prd-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 26px;
+        }
+
+        .prd-card {
+            background: var(--white);
+            border: var(--border);
+            box-shadow: var(--shadow);
+            padding: 30px 26px 26px;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .prd-card:hover { transform: translate(-3px, -3px); box-shadow: var(--shadow-lg); }
+
+        .prd-num {
+            position: absolute;
+            top: -18px;
+            left: 20px;
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            font-family: var(--font-en);
+            font-size: 1.2rem;
+            background: var(--orange);
+            border: var(--border);
+            box-shadow: 3px 3px 0 var(--ink);
+            transform: rotate(-6deg);
+        }
+
+        .prd-card:nth-child(2) .prd-num { background: var(--blue); }
+        .prd-card:nth-child(3) .prd-num { background: var(--pink); }
+        .prd-card:nth-child(4) .prd-num { background: var(--green); }
+
+        .prd-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
             font-weight: 700;
-            margin-bottom: 28px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            letter-spacing: 0.14em;
+            color: #666;
+            margin-bottom: 4px;
         }
 
-        .section-title::before {
+        .prd-card h3 {
+            font-family: var(--font-zh);
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .prd-card p { font-size: 0.95rem; color: #333; }
+
+        .prd-card ul { list-style: none; font-size: 0.95rem; }
+
+        .prd-card li {
+            padding-left: 22px;
+            position: relative;
+            margin-bottom: 7px;
+            color: #333;
+        }
+
+        .prd-card li::before {
             content: '';
-            display: block;
-            width: 4px;
-            height: 24px;
-            background: var(--accent);
-            border-radius: 4px;
+            position: absolute;
+            left: 0;
+            top: 9px;
+            border-left: 8px solid var(--ink);
+            border-top: 5.5px solid transparent;
+            border-bottom: 5.5px solid transparent;
         }
 
-        /* ── Project Cards ── */
+        .chip-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 4px; }
+
+        .chip {
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 5px 13px;
+            border: 2.5px solid var(--ink);
+            background: var(--paper);
+            box-shadow: 2.5px 2.5px 0 var(--ink);
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+
+        .chip:hover { transform: translate(-1.5px, -1.5px); box-shadow: 4px 4px 0 var(--ink); }
+        .chip:nth-child(4n+1) { background: var(--yellow); }
+        .chip:nth-child(4n+2) { background: var(--teal); }
+        .chip:nth-child(4n+3) { background: var(--pink); }
+        .chip:nth-child(4n+4) { background: var(--green); }
+
+        /* ── Projects ── */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
         }
 
         .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px;
-            transition: all 0.3s ease;
+            background: var(--white);
+            border: var(--border);
+            box-shadow: var(--shadow);
             display: flex;
             flex-direction: column;
-            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             overflow: hidden;
         }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            border-radius: 3px 3px 0 0;
-        }
+        .project-card:hover { transform: translate(-4px, -4px); box-shadow: var(--shadow-lg); }
 
-        .project-card--flutter::before {
-            background: linear-gradient(90deg, #0553a1, #40d0fd);
-        }
-
-        .project-card--claude::before {
-            background: linear-gradient(90deg, var(--accent), var(--pink));
-        }
-
-        .project-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3), 0 0 30px var(--accent-glow);
-        }
-
-        .project-icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-        }
-
-        .project-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-
-        .project-desc {
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            margin-bottom: 16px;
-            flex: 1;
-        }
-
-        .project-lang {
-            display: inline-block;
-            font-size: 0.78rem;
-            padding: 4px 10px;
-            border-radius: 100px;
-            background: var(--surface-2);
-            border: 1px solid var(--border);
-            color: var(--text-muted);
-            margin-bottom: 18px;
-        }
-
-        .project-lang .dot {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            margin-right: 6px;
-            vertical-align: middle;
-        }
-
-        .dot--dart {
-            background: #00b4ab;
-        }
-        .dot--skill {
-            background: var(--accent);
-        }
-
-        .project-topics {
+        .project-head {
+            border-bottom: var(--border);
+            padding: 14px 22px;
             display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-bottom: 18px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
         }
+
+        .project-card:nth-child(1) .project-head { background: var(--teal); }
+        .project-card:nth-child(2) .project-head { background: var(--yellow); }
+        .project-card:nth-child(3) .project-head { background: var(--green); }
+        .project-card:nth-child(4) .project-head { background: var(--orange); }
+
+        .project-id {
+            font-family: var(--font-en);
+            font-size: 1.05rem;
+            letter-spacing: 0.06em;
+        }
+
+        .project-type {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            background: var(--paper);
+            border: 2.5px solid var(--ink);
+            padding: 3px 10px;
+        }
+
+        .project-body { padding: 24px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+
+        .project-body h3 {
+            font-family: var(--font-zh);
+            font-size: 1.45rem;
+            line-height: 1.3;
+            margin-bottom: 4px;
+        }
+
+        .project-tech {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #555;
+            margin-bottom: 16px;
+        }
+
+        .ps {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 0.93rem;
+        }
+
+        .ps-label {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            padding: 3px 9px;
+            border: 2.5px solid var(--ink);
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+
+        .ps-label--pain { background: var(--pink); }
+        .ps-label--fix { background: var(--teal); }
+
+        .project-topics { display: flex; flex-wrap: wrap; gap: 7px; margin: 6px 0 20px; }
 
         .topic-tag {
-            font-size: 0.72rem;
-            padding: 3px 10px;
-            border-radius: 100px;
-            background: rgba(124, 92, 252, 0.1);
-            color: #c4b5fd;
-            border: 1px solid rgba(124, 92, 252, 0.2);
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border: 2px solid var(--ink);
+            background: var(--paper);
         }
 
-        .project-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+        .project-links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 18px;
-            border-radius: 100px;
-            font-size: 0.88rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.25s ease;
-            cursor: pointer;
-        }
+        .project-links .btn { padding: 9px 17px; font-size: 0.82rem; box-shadow: 3px 3px 0 var(--ink); }
+        .project-links .btn:hover { box-shadow: 5px 5px 0 var(--ink); }
 
-        .btn-primary {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background: #6d4de0;
-            box-shadow: 0 4px 20px var(--accent-glow);
-            transform: translateY(-1px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text);
-            border: 1px solid var(--border);
-        }
-
-        .btn-outline:hover {
-            border-color: var(--accent);
-            background: rgba(124, 92, 252, 0.05);
-            transform: translateY(-1px);
-        }
-
-        .btn-pages {
-            background: rgba(74, 222, 128, 0.1);
-            color: var(--green);
-            border: 1px solid rgba(74, 222, 128, 0.3);
-        }
-
-        .btn-pages:hover {
-            background: rgba(74, 222, 128, 0.2);
-            border-color: var(--green);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(74, 222, 128, 0.2);
-        }
-
-        /* ── Tech Stack ── */
-        .tech-cloud {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+        /* ── Tech stack ── */
+        .tech-cloud { display: flex; flex-wrap: wrap; gap: 13px; }
 
         .tech-item {
-            padding: 8px 18px;
-            border-radius: 100px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            font-size: 0.88rem;
-            color: var(--text);
-            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 10px 20px;
+            background: var(--white);
+            border: var(--border);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
         }
 
-        .tech-item:hover {
-            border-color: var(--accent);
-            box-shadow: 0 0 16px var(--accent-glow);
-            transform: translateY(-2px);
+        .tech-item:hover { transform: translate(-2px, -2px) rotate(-1deg); box-shadow: 6px 6px 0 var(--ink); }
+
+        .tech-item .emoji { font-size: 1.1rem; }
+
+        .tech-item:nth-child(6n+1) { background: var(--yellow); }
+        .tech-item:nth-child(6n+2) { background: var(--teal); }
+        .tech-item:nth-child(6n+3) { background: var(--pink); }
+        .tech-item:nth-child(6n+4) { background: var(--green); }
+        .tech-item:nth-child(6n+5) { background: var(--blue); }
+        .tech-item:nth-child(6n+6) { background: var(--orange); }
+
+        /* ── Roadmap + Contact ── */
+        .duo {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 28px;
+            align-items: start;
         }
 
-        .tech-item .emoji {
-            margin-right: 6px;
+        .roadmap {
+            background: var(--white);
+            border: var(--border);
+            box-shadow: var(--shadow);
+            padding: 28px 26px;
         }
 
-        /* ── Contact ── */
-        .contact-section {
-            padding: 50px 0 80px;
-            text-align: center;
+        .roadmap h3, .contact-box h3 {
+            font-family: var(--font-zh);
+            font-size: 1.5rem;
+            margin-bottom: 18px;
         }
 
-        .contact-section .section-title {
-            justify-content: center;
-        }
-
-        .contact-links {
+        .road-item {
             display: flex;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 13px 0;
+            border-bottom: 2.5px dashed var(--ink);
+            font-size: 0.95rem;
         }
+
+        .road-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .road-ver {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            font-weight: 700;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 3px 9px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .contact-box {
+            background: var(--ink);
+            color: var(--paper);
+            border: var(--border);
+            box-shadow: 8px 8px 0 var(--orange);
+            padding: 28px 26px;
+        }
+
+        .contact-box p { font-size: 0.95rem; margin-bottom: 20px; color: #d8d4c9; }
+
+        .contact-links { display: flex; flex-direction: column; gap: 13px; }
+
+        .contact-links .btn { justify-content: center; }
 
         /* ── Footer ── */
         .footer {
-            text-align: center;
-            padding: 32px 0;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            margin-top: 80px;
+            position: relative;
+            background: var(--paper-deep);
+            border-top: var(--border);
+            overflow: hidden;
         }
 
-        .footer a {
-            color: var(--accent);
-            text-decoration: none;
+        .footer-mesh {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 150px;
+            opacity: 0.5;
+            z-index: 0;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        .footer-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 46px 24px 42px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
+
+        .footer-brand {
+            font-family: var(--font-en);
+            font-size: 1.5rem;
+            letter-spacing: 0.03em;
+        }
+
+        .footer-note {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .footer-note a { color: var(--ink); font-weight: 700; }
+
+        /* ── Facets (low-poly) ── */
+        .facet {
+            opacity: 0;
+            transform: scale(0.55);
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: facet-in 0.55s cubic-bezier(0.2, 0.85, 0.3, 1.25) forwards;
+            animation-delay: var(--d, 0s);
+        }
+
+        @keyframes facet-in {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* ── Reveal on scroll ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.3, 1);
+        }
+
+        .reveal.is-in { opacity: 1; transform: translateY(0); }
 
         /* ── Responsive ── */
+        @media (max-width: 860px) {
+            .projects-grid, .prd-grid, .duo { grid-template-columns: 1fr; }
+            .hero .wrap { grid-template-columns: 1fr; gap: 32px; }
+            .avatar-frame { width: 160px; height: 180px; }
+        }
+
         @media (max-width: 640px) {
-            .hero {
-                padding: 60px 0 40px;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .stats {
-                gap: 24px;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .avatar {
-                width: 90px;
-                height: 90px;
-            }
+            .nav-links { display: none; }
+            .nav-cta { margin-left: auto; }
+            .stats { grid-template-columns: 1fr; gap: 16px; }
+            .stat:nth-child(n) { transform: none; }
+            .hero { padding: 48px 0 48px; }
+            .hero-name { -webkit-text-stroke-width: 2.5px; text-shadow: 4px 4px 0 var(--ink); }
+            .section { padding: 56px 0 20px; }
         }
 
-        /* ── Fade-in animation ── */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(24px);
-            animation: fade-in-up 0.7s ease forwards;
-        }
-
-        .fade-in--1 {
-            animation-delay: 0s;
-        }
-        .fade-in--2 {
-            animation-delay: 0.15s;
-        }
-        .fade-in--3 {
-            animation-delay: 0.3s;
-        }
-        .fade-in--4 {
-            animation-delay: 0.45s;
-        }
-
-        @keyframes fade-in-up {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .facet { animation: none; opacity: 1; transform: none; }
+            .marquee-track { animation: none; }
+            .reveal { opacity: 1; transform: none; transition: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Background Effects -->
-    <div class="bg-grid"></div>
-    <div class="bg-orb bg-orb--1"></div>
-    <div class="bg-orb bg-orb--2"></div>
+    <!-- ══ Nav ══ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-logo" href="#top" aria-label="回到顶部">qx</a>
+            <ul class="nav-links">
+                <li><a href="#prd">/ 产品说明书</a></li>
+                <li><a href="#products">/ 产品矩阵</a></li>
+                <li><a href="#skills">/ 技术资产</a></li>
+                <li><a href="#contact">/ 联系</a></li>
+            </ul>
+            <a class="nav-cta" href="https://github.com/qushengxixiaoluo" target="_blank" rel="noopener">GITHUB ↗</a>
+        </div>
+    </nav>
 
-    <div class="container">
+    <!-- ══ Hero ══ -->
+    <header class="hero" id="top">
+        <svg class="hero-mesh" data-lowpoly data-cols="13" data-rows="7" data-seed="20260930"
+             viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
 
-        <!-- Hero -->
-        <header class="hero">
-            <div class="avatar-wrapper fade-in fade-in--1">
-                <div class="avatar-ring"></div>
-                <img class="avatar"
-                src="https://avatars.githubusercontent.com/u/205567041?v=4"
-                alt="qushengxixiaoluo avatar"
-                loading="eager">
+        <div class="wrap">
+            <div class="avatar-frame reveal">
+                <img src="https://avatars.githubusercontent.com/u/205567041?v=4"
+                     alt="qushengxixiaoluo 的头像" loading="eager" width="200" height="224">
             </div>
-            <h1 class="fade-in fade-in--2">qushengxixiaoluo</h1>
-            <p class="tagline fade-in fade-in--2">
-                🚀 全栈开发者 · 热爱开源 · 专注于 AI 与 Flutter 跨平台开发
-            </p>
-            <a href="https://github.com/qushengxixiaoluo"
-            target="_blank"
-            rel="noopener"
-            class="gh-link fade-in fade-in--3">
-            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            访问 GitHub 主页
-        </a>
+
+            <div>
+                <span class="hero-badge reveal">PRODUCT-LED DEVELOPER · 产品型开发者</span>
+                <h1 class="hero-name reveal">qushengxixiaoluo</h1>
+                <div class="hero-tagline reveal">用产品思维定义问题，用工程能力交付答案。</div>
+                <p class="hero-sub reveal">Flutter 跨平台 · AI 应用 · 创意前端 · 永远开源。先搞清楚「为谁解决什么」，再写第一行代码。</p>
+                <div class="hero-actions reveal">
+                    <a class="btn btn--ink" href="https://github.com/qushengxixiaoluo" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                        访问 GitHub
+                    </a>
+                    <a class="btn btn--yellow" href="#products">看产品矩阵 ↓</a>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <!-- Stats -->
-    <div class="stats fade-in fade-in--3">
-        <div class="stat">
-            <div class="stat-value">2</div>
-            <div class="stat-label">开源项目</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">0</div>
-            <div class="stat-label">Followers</div>
-        </div>
-        <div class="stat">
-            <div class="stat-value">2</div>
-            <div class="stat-label">Following</div>
+    <!-- ══ Marquee ══ -->
+    <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+            <span>PRODUCT-LED DEVELOPER ✦ 产品思维 ✦ 跨平台开发 ✦ AI 原生 ✦ 开源共建 ✦ 设计 × 工程 ✦&nbsp;</span>
+            <span>PRODUCT-LED DEVELOPER ✦ 产品思维 ✦ 跨平台开发 ✦ AI 原生 ✦ 开源共建 ✦ 设计 × 工程 ✦&nbsp;</span>
         </div>
     </div>
 
-    <!-- Projects -->
-    <section class="section fade-in fade-in--4">
-        <h2 class="section-title">📦 开源项目</h2>
-        <div class="projects-grid">
+    <main class="wrap">
 
-            <!-- Emotion Companion Assistant -->
-            <article class="project-card project-card--flutter">
-                <div class="project-icon">🧠</div>
-                <h3>Emotion Companion Assistant</h3>
-                <p class="project-desc">
-                    一款轻量化治愈系心理健康情绪陪伴 Flutter 应用。集成 AI 聊天机器人、情绪分析和 OpenAI API，为用户提供温暖的心理支持与陪伴。
-                </p>
-                <div>
-                    <span class="project-lang"><span class="dot dot--dart"></span>Dart · Flutter</span>
+        <!-- ══ Stats ══ -->
+        <section class="stats" aria-label="关键数据">
+            <div class="stat reveal">
+                <div class="stat-value">5</div>
+                <div class="stat-label">开源项目 / OPEN SOURCE</div>
+            </div>
+            <div class="stat reveal">
+                <div class="stat-value">3</div>
+                <div class="stat-label">在线 Demo / LIVE</div>
+            </div>
+            <div class="stat reveal">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">开源 / SOURCE PUBLIC</div>
+            </div>
+        </section>
+
+        <!-- ══ 产品说明书 ══ -->
+        <section class="section" id="prd">
+            <div class="section-head reveal">
+                <span class="kicker">PRD · SELF AS A PRODUCT</span>
+                <h2 class="section-title">我，作为<span class="mark">一个产品</span>的说明书</h2>
+                <p class="section-desc">介绍自己最好的方式，是像写 PRD 一样：说清楚服务谁、解决什么痛点、交付什么价值。以下就是这份说明书。</p>
+            </div>
+
+            <div class="prd-grid">
+                <article class="prd-card reveal">
+                    <div class="prd-num">01</div>
+                    <p class="prd-label">POSITIONING / 定位</p>
+                    <h3>产品思维 × 全栈工程</h3>
+                    <p>不只是把代码写对，更要把需求做对。我习惯先问三句话：用户是谁？痛点有多痛？最小可交付方案是什么？——然后用最短路径把它做出来、上线、拿反馈。</p>
+                </article>
+
+                <article class="prd-card reveal">
+                    <div class="prd-num">02</div>
+                    <p class="prd-label">TARGET USERS / 目标用户</p>
+                    <h3>我服务这几群人</h3>
+                    <div class="chip-row">
+                        <span class="chip">情绪需要出口的人</span>
+                        <span class="chip">想亲近古诗词的人</span>
+                        <span class="chip">校园里的你我他</span>
+                        <span class="chip">着迷新交互的探索者</span>
+                    </div>
+                </article>
+
+                <article class="prd-card reveal">
+                    <div class="prd-num">03</div>
+                    <p class="prd-label">PAIN POINTS / 核心痛点</p>
+                    <h3>我看到的问题</h3>
+                    <ul>
+                        <li>专业心理支持门槛高、有距离感，情绪问题常无处安放；</li>
+                        <li>读诗词的资料分散又枯燥，缺一份沉浸感；</li>
+                        <li>校园二手交易信息不对称，买卖双方都在碰运气；</li>
+                        <li>人机交互长期被困在一块玻璃屏幕里。</li>
+                    </ul>
+                </article>
+
+                <article class="prd-card reveal">
+                    <div class="prd-num">04</div>
+                    <p class="prd-label">VALUE PROPOSITION / 价值主张</p>
+                    <h3>我交付的价值</h3>
+                    <ul>
+                        <li>跨平台：Flutter 一次编写，多端运行；</li>
+                        <li>离线优先：不依赖网络，打开即用；</li>
+                        <li>AI 原生：把大模型能力接进真实场景；</li>
+                        <li>可感知交互：手势、3D、动效，让操作有反馈。</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <!-- ══ 产品矩阵 ══ -->
+        <section class="section" id="products">
+            <div class="section-head reveal">
+                <span class="kicker">PRODUCT MATRIX / 解决方案</span>
+                <h2 class="section-title">痛点之下，是我交付的<span class="mark">四款产品</span></h2>
+                <p class="section-desc">每一个项目都不是「练手玩具」，而是对应一个真实痛点的最小解决方案。全部开源，可直接体验。</p>
+            </div>
+
+            <div class="projects-grid">
+
+                <!-- P01 Emotion Companion Assistant -->
+                <article class="project-card reveal">
+                    <div class="project-head">
+                        <span class="project-id">P01 · EMOTION COMPANION</span>
+                        <span class="project-type">FLUTTER APP</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>情绪陪伴助手</h3>
+                        <p class="project-tech">DART · FLUTTER · OPENAI API</p>
+                        <div class="ps">
+                            <span class="ps-label ps-label--pain">痛点</span>
+                            <span>心理咨询有门槛、有距离感，日常的坏情绪却随时随地发生。</span>
+                        </div>
+                        <div class="ps">
+                            <span class="ps-label ps-label--fix">方案</span>
+                            <span>轻量治愈系 Flutter 应用：AI 聊天 + 情绪分析，把温暖的心理陪伴装进口袋。</span>
+                        </div>
+                        <div class="project-topics">
+                            <span class="topic-tag">ai-chatbot</span>
+                            <span class="topic-tag">emotion-analysis</span>
+                            <span class="topic-tag">mental-health</span>
+                            <span class="topic-tag">openai-api</span>
+                        </div>
+                        <div class="project-links">
+                            <a class="btn btn--teal" href="https://github.com/qushengxixiaoluo/Emotion_Companion_Assistant" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                源代码
+                            </a>
+                            <a class="btn btn--yellow" href="https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/" target="_blank" rel="noopener">🌐 在线 Demo</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- P02 诗语 -->
+                <article class="project-card reveal">
+                    <div class="project-head">
+                        <span class="project-id">P02 · 诗语 SHIYU</span>
+                        <span class="project-type">FLUTTER APP</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>诗语 · 古诗词赏析</h3>
+                        <p class="project-tech">DART · FLUTTER · OFFLINE-FIRST</p>
+                        <div class="ps">
+                            <span class="ps-label ps-label--pain">痛点</span>
+                            <span>读诗要翻好几个 App 查译文赏析，资料分散，难坚持。</span>
+                        </div>
+                        <div class="ps">
+                            <span class="ps-label ps-label--fix">方案</span>
+                            <span>离线抽签式读诗应用：百首经典配翻译、赏析、注释，明暗古风主题，随时随地沉浸读诗。</span>
+                        </div>
+                        <div class="project-topics">
+                            <span class="topic-tag">poetry</span>
+                            <span class="topic-tag">offline-first</span>
+                            <span class="topic-tag">chinese-culture</span>
+                            <span class="topic-tag">dark-mode</span>
+                        </div>
+                        <div class="project-links">
+                            <a class="btn btn--teal" href="https://github.com/qushengxixiaoluo/Appreciation_of_Ancient_Chinese_Poetry" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                源代码
+                            </a>
+                            <a class="btn btn--yellow" href="https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/" target="_blank" rel="noopener">🌐 在线 Demo</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- P03 Campus Market -->
+                <article class="project-card reveal">
+                    <div class="project-head">
+                        <span class="project-id">P03 · CAMPUS MARKET</span>
+                        <span class="project-type">VUE WEB</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>校园集市 Demo</h3>
+                        <p class="project-tech">VUE · JAVASCRIPT</p>
+                        <div class="ps">
+                            <span class="ps-label ps-label--pain">痛点</span>
+                            <span>校园二手交易靠群聊刷屏，信息发布与查找都不高效。</span>
+                        </div>
+                        <div class="ps">
+                            <span class="ps-label ps-label--fix">方案</span>
+                            <span>轻量校园集市前端：模拟二手交易与信息发布场景，验证校园信息匹配的最小闭环。</span>
+                        </div>
+                        <div class="project-topics">
+                            <span class="topic-tag">vue</span>
+                            <span class="topic-tag">campus</span>
+                            <span class="topic-tag">marketplace</span>
+                        </div>
+                        <div class="project-links">
+                            <a class="btn btn--teal" href="https://github.com/qushengxixiaoluo/Campus_Market_Demo" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                源代码
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- P04 Particle Effect Display -->
+                <article class="project-card reveal">
+                    <div class="project-head">
+                        <span class="project-id">P04 · PARTICLE FX</span>
+                        <span class="project-type">WEB · WEBGL</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>手势粒子特效</h3>
+                        <p class="project-tech">THREE.JS · MEDIAPIPE · JAVASCRIPT</p>
+                        <div class="ps">
+                            <span class="ps-label ps-label--pain">痛点</span>
+                            <span>人机交互长期困在触屏里，隔空操作只存在于电影中。</span>
+                        </div>
+                        <div class="ps">
+                            <span class="ps-label ps-label--fix">方案</span>
+                            <span>Three.js × MediaPipe：双手隔空控制 3D 粒子——右手缩放、左手握拳看图翻页，纯前端打开即用。</span>
+                        </div>
+                        <div class="project-topics">
+                            <span class="topic-tag">threejs</span>
+                            <span class="topic-tag">hand-gesture</span>
+                            <span class="topic-tag">3d-particles</span>
+                            <span class="topic-tag">webgl</span>
+                        </div>
+                        <div class="project-links">
+                            <a class="btn btn--teal" href="https://github.com/qushengxixiaoluo/Particle_Effect_Display" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                源代码
+                            </a>
+                            <a class="btn btn--yellow" href="https://is-cau.github.io/Particle_Effect_Display/" target="_blank" rel="noopener">🌐 在线 Demo</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ══ 技术资产 ══ -->
+        <section class="section" id="skills">
+            <div class="section-head reveal">
+                <span class="kicker">TECH ASSETS / 技术资产</span>
+                <h2 class="section-title">支撑产品的<span class="mark">能力栈</span></h2>
+                <p class="section-desc">技术是手段不是目的——这些是把「痛点 → 方案」跑通所依赖的武器库。</p>
+            </div>
+            <div class="tech-cloud reveal">
+                <span class="tech-item"><span class="emoji">📱</span>Flutter / Dart</span>
+                <span class="tech-item"><span class="emoji">🤖</span>AI / LLM 集成</span>
+                <span class="tech-item"><span class="emoji">🖼️</span>Vue.js</span>
+                <span class="tech-item"><span class="emoji">✨</span>Three.js / WebGL</span>
+                <span class="tech-item"><span class="emoji">✋</span>MediaPipe 手势识别</span>
+                <span class="tech-item"><span class="emoji">🌐</span>跨平台开发</span>
+                <span class="tech-item"><span class="emoji">🎨</span>前端设计</span>
+                <span class="tech-item"><span class="emoji">📜</span>中国传统文化</span>
+                <span class="tech-item"><span class="emoji">💚</span>心理健康科技</span>
+            </div>
+        </section>
+
+        <!-- ══ 路线图 + 联系 ══ -->
+        <section class="section" id="contact">
+            <div class="section-head reveal">
+                <span class="kicker">ROADMAP & CONTACT</span>
+                <h2 class="section-title">下一个<span class="mark">版本</span>，以及找到我</h2>
+            </div>
+
+            <div class="duo">
+                <div class="roadmap reveal">
+                    <h3>🗺️ 产品路线图</h3>
+                    <div class="road-item">
+                        <span class="road-ver">V2.0</span>
+                        <span>为「情绪陪伴」接入更强的模型与更细的情绪维度，让回应更懂人。</span>
+                    </div>
+                    <div class="road-item">
+                        <span class="road-ver">V1.x</span>
+                        <span>补齐开源项目的文档与贡献指南，让每个人都能一键跑起来。</span>
+                    </div>
+                    <div class="road-item">
+                        <span class="road-ver">NEXT</span>
+                        <span>把「诗语」从抽签工具，升级成每天陪你读一首诗的产品。</span>
+                    </div>
                 </div>
-                <div class="project-topics">
-                    <span class="topic-tag">ai-chatbot</span>
-                    <span class="topic-tag">emotion-analysis</span>
-                    <span class="topic-tag">flutter</span>
-                    <span class="topic-tag">mental-health</span>
-                    <span class="topic-tag">openai-api</span>
+
+                <div class="contact-box reveal">
+                    <h3>📬 联系我</h3>
+                    <p>欢迎交流产品、开源与任何有趣的想法——Issue 和 PR 永远敞开。</p>
+                    <div class="contact-links">
+                        <a class="btn btn--yellow" href="https://github.com/qushengxixiaoluo" target="_blank" rel="noopener">
+                            <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            GitHub 主页
+                        </a>
+                        <a class="btn btn--teal" href="https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/" target="_blank" rel="noopener">🧠 情绪陪伴 Demo</a>
+                        <a class="btn btn--pink" href="https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/" target="_blank" rel="noopener">📜 诗语 Demo</a>
+                        <a class="btn btn--orange" href="https://is-cau.github.io/Particle_Effect_Display/" target="_blank" rel="noopener">✨ 粒子特效 Demo</a>
+                    </div>
                 </div>
-                <div class="project-links">
-                    <a href="https://github.com/qushengxixiaoluo/Emotion_Companion_Assistant"
-                    target="_blank" rel="noopener" class="btn btn-primary">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-                    源代码
-                </a>
-                <a href="https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/"
-                target="_blank" rel="noopener" class="btn btn-pages">
-                🌐 GitHub Pages
-            </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ══ Footer ══ -->
+    <footer class="footer">
+        <svg class="footer-mesh" data-lowpoly data-cols="16" data-rows="3" data-seed="777"
+             viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true"></svg>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">QUSHENGXIXIAOLUO</div>
+                <div class="footer-note">产品思维 × 工程实现 · © 2026</div>
+            </div>
+            <div class="footer-note">
+                使用 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 部署 ·
+                由 <a href="https://claude.com/claude-code" target="_blank" rel="noopener">Claude Code</a> 打造
+            </div>
         </div>
-    </article>
+    </footer>
 
-    <!-- dev-env-guide -->
-    <article class="project-card project-card--claude">
-        <div class="project-icon">🛠️</div>
-        <h3>dev-env-guide</h3>
-        <p class="project-desc">
-            让 AI 不再盲目扫描全盘找 SDK。这个 Claude Code Skill 教会 AI 优先用环境变量定位工具、安装时自动配置 PATH、卸载后清理残留。<br>
-            <small style="color: var(--text-muted)">Prevent AI from blindly scanning the entire disk to locate SDKs. Enable AI to find tools via environment variables, auto-configure PATH, and clean up after uninstallation.</small>
-        </p>
-        <div>
-            <span class="project-lang"><span class="dot dot--skill"></span>Claude Code Skill</span>
-        </div>
-        <div class="project-topics">
-            <span class="topic-tag">claude-code</span>
-            <span class="topic-tag">claude-skill</span>
-            <span class="topic-tag">dev-environment</span>
-            <span class="topic-tag">path-configuration</span>
-            <span class="topic-tag">sdk-management</span>
-        </div>
-        <div class="project-links">
-            <a href="https://github.com/qushengxixiaoluo/dev-env-guide"
-            target="_blank" rel="noopener" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            源代码
-        </a>
-    </div>
-</article>
+    <script>
+        /* ── Low-poly mesh generator (deterministic, seeded) ── */
+        function mulberry32(seed) {
+            return function () {
+                let t = seed += 0x6D2B79F5;
+                t = Math.imul(t ^ t >>> 15, t | 1);
+                t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+                return ((t ^ t >>> 14) >>> 0) / 4294967296;
+            };
+        }
 
-</div>
-</section>
+        // paper-dominant: ~2/3 warm paper facets, ~1/3 color accents
+        const MESH_PALETTE = [
+            '#FBF6EC', '#FBF6EC', '#FBF6EC', '#FBF6EC',
+            '#F3ECDC', '#F3ECDC', '#F3ECDC',
+            '#FFD23F', '#FFD23F', '#FF6B35', '#17BEBB',
+            '#17BEBB', '#4D96FF', '#FF5D8F', '#6BCB77', '#FF9F68'
+        ];
 
-<!-- Tech Stack -->
-<section class="section" style="animation-delay: 0.6s">
-    <h2 class="section-title">🛠️ 技术栈</h2>
-    <div class="tech-cloud">
-        <span class="tech-item"><span class="emoji">📱</span>Flutter / Dart</span>
-        <span class="tech-item"><span class="emoji">🤖</span>AI / LLM 集成</span>
-        <span class="tech-item"><span class="emoji">🧩</span>Claude Code Skill</span>
-        <span class="tech-item"><span class="emoji">🔧</span>SDK 管理 & DevOps</span>
-        <span class="tech-item"><span class="emoji">💚</span>心理健康科技</span>
-        <span class="tech-item"><span class="emoji">🌐</span>跨平台开发</span>
-        <span class="tech-item"><span class="emoji">🎨</span>前端设计</span>
-    </div>
-</section>
+        function buildLowPoly(svg) {
+            const NS = 'http://www.w3.org/2000/svg';
+            const vb = svg.viewBox.baseVal;
+            const W = vb.width, H = vb.height;
+            const cols = +(svg.dataset.cols || 12);
+            const rows = +(svg.dataset.rows || 6);
+            const rng = mulberry32(+(svg.dataset.seed || 1));
+            const cw = W / cols, ch = H / rows;
 
-<!-- Contact -->
-<section class="contact-section" style="animation-delay: 0.75s">
-    <h2 class="section-title">📬 联系我</h2>
-    <div class="contact-links">
-        <a href="https://github.com/qushengxixiaoluo" target="_blank" rel="noopener" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-            GitHub 主页
-        </a>
-        <a href="https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/"
-        target="_blank" rel="noopener" class="btn btn-pages">
-        🌐 Emotion Companion 在线演示
-    </a>
-</div>
-</section>
+            // grid points with jitter (edges stay put)
+            const pts = [];
+            for (let r = 0; r <= rows; r++) {
+                pts[r] = [];
+                for (let c = 0; c <= cols; c++) {
+                    const edge = r === 0 || c === 0 || r === rows || c === cols;
+                    pts[r][c] = {
+                        x: c * cw + (edge ? 0 : (rng() - 0.5) * cw * 0.85),
+                        y: r * ch + (edge ? 0 : (rng() - 0.5) * ch * 0.85)
+                    };
+                }
+            }
 
-<!-- Footer -->
-<footer class="footer">
-    <p>© 2026 <a href="https://github.com/qushengxixiaoluo">qushengxixiaoluo</a> · 使用
-        <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 部署
-        · 🚀 由 Claude Code 生成
-    </p>
-</footer>
+            // two triangles per cell, random diagonal
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const a = pts[r][c], b = pts[r][c + 1], d = pts[r + 1][c], e = pts[r + 1][c + 1];
+                    const tris = rng() > 0.5
+                        ? [[a, b, d], [b, e, d]]
+                        : [[a, b, e], [a, e, d]];
 
-</div>
+                    tris.forEach(function (tri) {
+                        const poly = document.createElementNS(NS, 'polygon');
+                        poly.setAttribute('points', tri.map(function (p) {
+                            return p.x.toFixed(1) + ',' + p.y.toFixed(1);
+                        }).join(' '));
+                        poly.setAttribute('fill', MESH_PALETTE[Math.floor(rng() * MESH_PALETTE.length)]);
+                        poly.setAttribute('stroke', '#111111');
+                        poly.setAttribute('stroke-width', '2.5');
+                        poly.setAttribute('stroke-linejoin', 'round');
+                        poly.setAttribute('class', 'facet');
+                        poly.style.setProperty('--d', ((r + c) * 0.045 + rng() * 0.12).toFixed(2) + 's');
+                        svg.appendChild(poly);
+                    });
+                }
+            }
+        }
 
+        document.querySelectorAll('[data-lowpoly]').forEach(buildLowPoly);
+
+        /* ── Scroll reveal ── */
+        (function () {
+            const items = document.querySelectorAll('.reveal');
+            if (!('IntersectionObserver' in window)) {
+                items.forEach(function (el) { el.classList.add('is-in'); });
+                return;
+            }
+            const io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-in');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+            items.forEach(function (el, i) {
+                el.style.transitionDelay = (i % 4) * 0.08 + 's';
+                io.observe(el);
+            });
+        })();
+    </script>
 </body>
 </html>
