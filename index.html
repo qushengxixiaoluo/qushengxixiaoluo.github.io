@@ -447,6 +447,13 @@
             box-shadow: 0 10px 24px rgba(78, 150, 224, 0.4);
         }
 
+        .btn--violet {
+            background: linear-gradient(135deg, #A78BFA, #7C5CE0);
+            color: var(--white);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 10px 24px rgba(124, 92, 224, 0.4);
+        }
+
         .btn svg { width: 17px; height: 17px; fill: currentColor; flex-shrink: 0; }
 
         /* ── Marquee · sunset title band ── */
@@ -734,6 +741,7 @@
         .project-card:nth-child(4) .project-head { background: linear-gradient(135deg, #9B8CFF, #6C7BFF); }
         .project-card:nth-child(5) .project-head { background: linear-gradient(135deg, #FF9FBA, #EE6E95); }
         .project-card:nth-child(6) .project-head { background: linear-gradient(135deg, #7CC0EC, #3E86D5); }
+        .project-card:nth-child(7) .project-head { background: linear-gradient(135deg, #8EE6C8, #36B394); }
 
         .project-id {
             font-family: var(--font-en);
@@ -1072,11 +1080,11 @@
         <!-- ══ Stats ══ -->
         <section class="stats" aria-label="关键数据">
             <div class="stat reveal">
-                <div class="stat-value">6</div>
+                <div class="stat-value">7</div>
                 <div class="stat-label">开源项目 / OPEN SOURCE</div>
             </div>
             <div class="stat reveal">
-                <div class="stat-value">4</div>
+                <div class="stat-value">5</div>
                 <div class="stat-label">在线 Demo / LIVE</div>
             </div>
             <div class="stat reveal">
@@ -1112,6 +1120,7 @@
                         <span class="chip">总怕漏掉安排的人</span>
                         <span class="chip">校园里的你我他</span>
                         <span class="chip">着迷新交互的探索者</span>
+                        <span class="chip">求职季的你</span>
                     </div>
                 </article>
 
@@ -1125,6 +1134,7 @@
                         <li>日程录入太繁琐，重要的事靠脑子记，容易漏、容易重复；</li>
                         <li>读诗词的资料分散又枯燥，缺一份沉浸感；</li>
                         <li>校园二手交易信息不对称，买卖双方都在碰运气；</li>
+                        <li>面试邀约散落在邮箱里，容易漏看、容易时间冲突；</li>
                         <li>人机交互长期被困在一块玻璃屏幕里。</li>
                     </ul>
                 </article>
@@ -1147,7 +1157,7 @@
         <section class="section" id="products">
             <div class="section-head reveal">
                 <span class="kicker">Product Matrix · 解决方案</span>
-                <h2 class="section-title">痛点之下，是我交付的<span class="mark">六款产品</span></h2>
+                <h2 class="section-title">痛点之下，是我交付的<span class="mark">七款产品</span></h2>
                 <p class="section-desc">每一个项目都不是「练手玩具」，而是对应一个真实痛点的最小解决方案。全部开源，可直接体验。</p>
             </div>
 
@@ -1347,6 +1357,39 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- P07 Interview Alert App -->
+                <article class="project-card reveal">
+                    <div class="project-head">
+                        <span class="project-id">P07 · Interview Alert</span>
+                        <span class="project-type">FLUTTER + PYTHON</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>面试邀约提醒</h3>
+                        <p class="project-tech">DART · FLUTTER · PYTHON · ICS</p>
+                        <div class="ps">
+                            <span class="ps-label ps-label--pain">痛点</span>
+                            <span>求职季的面试邀约散落在邮箱里，容易漏看、忘记跟进，还常撞时间。</span>
+                        </div>
+                        <div class="ps">
+                            <span class="ps-label ps-label--fix">方案</span>
+                            <span>Python 后端解析邀约邮件（ICS）+ AI 抽取面试信息，Flutter 多端客户端呈现日历与提醒，手机桌面都能用。</span>
+                        </div>
+                        <div class="project-topics">
+                            <span class="topic-tag">job-seeking</span>
+                            <span class="topic-tag">ics-calendar</span>
+                            <span class="topic-tag">ai-assistant</span>
+                            <span class="topic-tag">flutter-web</span>
+                        </div>
+                        <div class="project-links">
+                            <a class="btn btn--teal" href="https://github.com/qushengxixiaoluo/Interview_Alert_App" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                源代码
+                            </a>
+                            <a class="btn btn--yellow" href="https://qushengxixiaoluo.github.io/Interview_Alert_App/" target="_blank" rel="noopener">🌐 在线 Demo</a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -1406,6 +1449,7 @@
                         <a class="btn btn--pink" href="https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/" target="_blank" rel="noopener">📜 诗语 Demo</a>
                         <a class="btn btn--orange" href="https://is-cau.github.io/Particle_Effect_Display/" target="_blank" rel="noopener">✨ 粒子特效 Demo</a>
                         <a class="btn btn--blue" href="https://qushengxixiaoluo.github.io/lifesnap/" target="_blank" rel="noopener">📷 拾光手册 Demo</a>
+                        <a class="btn btn--violet" href="https://qushengxixiaoluo.github.io/Interview_Alert_App/" target="_blank" rel="noopener">🗓 面试提醒 Demo</a>
                     </div>
                 </div>
             </div>
