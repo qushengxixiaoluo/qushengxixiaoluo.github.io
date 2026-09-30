@@ -148,14 +148,6 @@
             background: var(--paper-deep);
         }
 
-        .hero-mesh {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
         .hero .wrap {
             display: grid;
             grid-template-columns: auto 1fr;
@@ -491,6 +483,8 @@
         .project-card:nth-child(2) .project-head { background: var(--yellow); }
         .project-card:nth-child(3) .project-head { background: var(--green); }
         .project-card:nth-child(4) .project-head { background: var(--orange); }
+        .project-card:nth-child(5) .project-head { background: var(--blue); }
+        .project-card:nth-child(6) .project-head { background: var(--pink); }
 
         .project-id {
             font-family: var(--font-en);
@@ -657,17 +651,6 @@
             overflow: hidden;
         }
 
-        .footer-mesh {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            width: 100%;
-            height: 150px;
-            opacity: 0.5;
-            z-index: 0;
-        }
-
         .footer-inner {
             position: relative;
             z-index: 1;
@@ -695,20 +678,6 @@
         }
 
         .footer-note a { color: var(--ink); font-weight: 700; }
-
-        /* ── Facets (low-poly) ── */
-        .facet {
-            opacity: 0;
-            transform: scale(0.55);
-            transform-box: fill-box;
-            transform-origin: center;
-            animation: facet-in 0.55s cubic-bezier(0.2, 0.85, 0.3, 1.25) forwards;
-            animation-delay: var(--d, 0s);
-        }
-
-        @keyframes facet-in {
-            to { opacity: 1; transform: scale(1); }
-        }
 
         /* ── Reveal on scroll ── */
         .reveal {
@@ -738,7 +707,6 @@
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
-            .facet { animation: none; opacity: 1; transform: none; }
             .marquee-track { animation: none; }
             .reveal { opacity: 1; transform: none; transition: none; }
         }
@@ -762,9 +730,6 @@
 
     <!-- ══ Hero ══ -->
     <header class="hero" id="top">
-        <svg class="hero-mesh" data-lowpoly data-cols="13" data-rows="7" data-seed="20260930"
-             viewBox="0 0 1440 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true"></svg>
-
         <div class="wrap">
             <div class="avatar-frame reveal">
                 <img src="https://avatars.githubusercontent.com/u/205567041?v=4"
@@ -800,7 +765,7 @@
         <!-- ══ Stats ══ -->
         <section class="stats" aria-label="关键数据">
             <div class="stat reveal">
-                <div class="stat-value">5</div>
+                <div class="stat-value">6</div>
                 <div class="stat-label">开源项目 / OPEN SOURCE</div>
             </div>
             <div class="stat reveal">
@@ -835,7 +800,9 @@
                     <h3>我服务这几群人</h3>
                     <div class="chip-row">
                         <span class="chip">情绪需要出口的人</span>
+                        <span class="chip">想留住每一天的人</span>
                         <span class="chip">想亲近古诗词的人</span>
+                        <span class="chip">总怕漏掉安排的人</span>
                         <span class="chip">校园里的你我他</span>
                         <span class="chip">着迷新交互的探索者</span>
                     </div>
@@ -847,6 +814,8 @@
                     <h3>我看到的问题</h3>
                     <ul>
                         <li>专业心理支持门槛高、有距离感，情绪问题常无处安放；</li>
+                        <li>照片堆满相册却从不回看，日记总是坚持不下来；</li>
+                        <li>日程录入太繁琐，重要的事靠脑子记，容易漏、容易重复；</li>
                         <li>读诗词的资料分散又枯燥，缺一份沉浸感；</li>
                         <li>校园二手交易信息不对称，买卖双方都在碰运气；</li>
                         <li>人机交互长期被困在一块玻璃屏幕里。</li>
@@ -871,7 +840,7 @@
         <section class="section" id="products">
             <div class="section-head reveal">
                 <span class="kicker">PRODUCT MATRIX / 解决方案</span>
-                <h2 class="section-title">痛点之下，是我交付的<span class="mark">四款产品</span></h2>
+                <h2 class="section-title">痛点之下，是我交付的<span class="mark">六款产品</span></h2>
                 <p class="section-desc">每一个项目都不是「练手玩具」，而是对应一个真实痛点的最小解决方案。全部开源，可直接体验。</p>
             </div>
 
@@ -1006,6 +975,70 @@
                         </div>
                     </div>
                 </article>
+
+                <!-- P05 Lifesnap 拾光手册 -->
+                <article class="project-card reveal">
+                    <div class="project-head">
+                        <span class="project-id">P05 · LIFESNAP 拾光手册</span>
+                        <span class="project-type">FLUTTER APP</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>拾光手册 · AI 照片日记</h3>
+                        <p class="project-tech">DART · FLUTTER · ANTHROPIC / OPENAI API</p>
+                        <div class="ps">
+                            <span class="ps-label ps-label--pain">痛点</span>
+                            <span>照片堆满相册却从不回看，写日记三分钟热度，坚持不下来。</span>
+                        </div>
+                        <div class="ps">
+                            <span class="ps-label ps-label--fix">方案</span>
+                            <span>把每一天拍成一关闯关地图的 AI 照片日记：多源照片扫描 + AI 每日总结（双模型格式），批量断点续跑，吉卜力×糖果手绘画风。</span>
+                        </div>
+                        <div class="project-topics">
+                            <span class="topic-tag">ai-photo-diary</span>
+                            <span class="topic-tag">anthropic-api</span>
+                            <span class="topic-tag">openai-api</span>
+                            <span class="topic-tag">daily-summary</span>
+                        </div>
+                        <div class="project-links">
+                            <a class="btn btn--teal" href="https://github.com/qushengxixiaoluo/lifesnap" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                源代码
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- P06 Event Calendar -->
+                <article class="project-card reveal">
+                    <div class="project-head">
+                        <span class="project-id">P06 · EVENT CALENDAR</span>
+                        <span class="project-type">FLUTTER APP</span>
+                    </div>
+                    <div class="project-body">
+                        <h3>智能日程 · 事件日历</h3>
+                        <p class="project-tech">DART · FLUTTER · LOCAL-FIRST · AI</p>
+                        <div class="ps">
+                            <span class="ps-label ps-label--pain">痛点</span>
+                            <span>日程录入太繁琐，截图、邮件、语音里的安排全靠手动抄，容易漏也容易重复。</span>
+                        </div>
+                        <div class="ps">
+                            <span class="ps-label ps-label--fix">方案</span>
+                            <span>本地优先日程应用：手动 / AI 文本 / 邮箱 / 截图 / 语音五渠道录入，AI 生成候选、人工确认写入，查重合并，数据完全留在本机。</span>
+                        </div>
+                        <div class="project-topics">
+                            <span class="topic-tag">local-first</span>
+                            <span class="topic-tag">multi-channel-input</span>
+                            <span class="topic-tag">ai-recognition</span>
+                            <span class="topic-tag">privacy</span>
+                        </div>
+                        <div class="project-links">
+                            <a class="btn btn--teal" href="https://github.com/qushengxixiaoluo/event_calendar" target="_blank" rel="noopener">
+                                <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                源代码
+                            </a>
+                        </div>
+                    </div>
+                </article>
             </div>
         </section>
 
@@ -1072,8 +1105,6 @@
 
     <!-- ══ Footer ══ -->
     <footer class="footer">
-        <svg class="footer-mesh" data-lowpoly data-cols="16" data-rows="3" data-seed="777"
-             viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true"></svg>
         <div class="footer-inner">
             <div>
                 <div class="footer-brand">QUSHENGXIXIAOLUO</div>
@@ -1087,73 +1118,6 @@
     </footer>
 
     <script>
-        /* ── Low-poly mesh generator (deterministic, seeded) ── */
-        function mulberry32(seed) {
-            return function () {
-                let t = seed += 0x6D2B79F5;
-                t = Math.imul(t ^ t >>> 15, t | 1);
-                t ^= t + Math.imul(t ^ t >>> 7, t | 61);
-                return ((t ^ t >>> 14) >>> 0) / 4294967296;
-            };
-        }
-
-        // paper-dominant: ~2/3 warm paper facets, ~1/3 color accents
-        const MESH_PALETTE = [
-            '#FBF6EC', '#FBF6EC', '#FBF6EC', '#FBF6EC',
-            '#F3ECDC', '#F3ECDC', '#F3ECDC',
-            '#FFD23F', '#FFD23F', '#FF6B35', '#17BEBB',
-            '#17BEBB', '#4D96FF', '#FF5D8F', '#6BCB77', '#FF9F68'
-        ];
-
-        function buildLowPoly(svg) {
-            const NS = 'http://www.w3.org/2000/svg';
-            const vb = svg.viewBox.baseVal;
-            const W = vb.width, H = vb.height;
-            const cols = +(svg.dataset.cols || 12);
-            const rows = +(svg.dataset.rows || 6);
-            const rng = mulberry32(+(svg.dataset.seed || 1));
-            const cw = W / cols, ch = H / rows;
-
-            // grid points with jitter (edges stay put)
-            const pts = [];
-            for (let r = 0; r <= rows; r++) {
-                pts[r] = [];
-                for (let c = 0; c <= cols; c++) {
-                    const edge = r === 0 || c === 0 || r === rows || c === cols;
-                    pts[r][c] = {
-                        x: c * cw + (edge ? 0 : (rng() - 0.5) * cw * 0.85),
-                        y: r * ch + (edge ? 0 : (rng() - 0.5) * ch * 0.85)
-                    };
-                }
-            }
-
-            // two triangles per cell, random diagonal
-            for (let r = 0; r < rows; r++) {
-                for (let c = 0; c < cols; c++) {
-                    const a = pts[r][c], b = pts[r][c + 1], d = pts[r + 1][c], e = pts[r + 1][c + 1];
-                    const tris = rng() > 0.5
-                        ? [[a, b, d], [b, e, d]]
-                        : [[a, b, e], [a, e, d]];
-
-                    tris.forEach(function (tri) {
-                        const poly = document.createElementNS(NS, 'polygon');
-                        poly.setAttribute('points', tri.map(function (p) {
-                            return p.x.toFixed(1) + ',' + p.y.toFixed(1);
-                        }).join(' '));
-                        poly.setAttribute('fill', MESH_PALETTE[Math.floor(rng() * MESH_PALETTE.length)]);
-                        poly.setAttribute('stroke', '#111111');
-                        poly.setAttribute('stroke-width', '2.5');
-                        poly.setAttribute('stroke-linejoin', 'round');
-                        poly.setAttribute('class', 'facet');
-                        poly.style.setProperty('--d', ((r + c) * 0.045 + rng() * 0.12).toFixed(2) + 's');
-                        svg.appendChild(poly);
-                    });
-                }
-            }
-        }
-
-        document.querySelectorAll('[data-lowpoly]').forEach(buildLowPoly);
-
         /* ── Scroll reveal ── */
         (function () {
             const items = document.querySelectorAll('.reveal');

@@ -5,12 +5,12 @@
 
 ## ✨ 设计风格
 
-**Low-poly × 黑色描边（Neo-Brutalism）**
+**Neo-Brutalism · 黑色描边**
 
-- 程序生成的低多边形三角网格背景（固定随机种子，每块带黑色描边，逐块弹入动画）
 - 全站 3px 黑色描边 + 硬阴影（无模糊），按钮/卡片 hover 按压位移
 - 描边大标题（Anton + text-stroke）、跑马灯条、贴纸式旋转角标、六边形描边头像
 - 米白纸感底色 + 点阵纹理，彩色（黄/青/粉/橙/蓝/绿）点缀
+- 分段入场动画与滚动揭示，适配 `prefers-reduced-motion`
 
 ## 🧠 内容框架：把自己写成一份 PRD
 
@@ -31,11 +31,12 @@
 | P02 | [诗语 · 古诗词赏析](https://github.com/qushengxixiaoluo/Appreciation_of_Ancient_Chinese_Poetry) | Flutter · 离线优先 | [在线 Demo](https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/) |
 | P03 | [校园集市 Demo](https://github.com/qushengxixiaoluo/Campus_Market_Demo) | Vue · JavaScript | [源代码](https://github.com/qushengxixiaoluo/Campus_Market_Demo) |
 | P04 | [手势粒子特效](https://github.com/qushengxixiaoluo/Particle_Effect_Display) | Three.js · MediaPipe | [在线 Demo](https://is-cau.github.io/Particle_Effect_Display/) |
+| P05 | [拾光手册 · AI 照片日记](https://github.com/qushengxixiaoluo/lifesnap) | Flutter · Anthropic / OpenAI API | [源代码](https://github.com/qushengxixiaoluo/lifesnap) |
+| P06 | [智能日程 · 事件日历](https://github.com/qushengxixiaoluo/event_calendar) | Flutter · 本地优先 · AI | [源代码](https://github.com/qushengxixiaoluo/event_calendar) |
 
 ## 🛠 技术实现
 
 - **单文件静态站点**：仅 `index.html`，无构建步骤、无依赖
-- **低多边形网格**：JS 按种子（mulberry32）生成确定性三角网格 SVG，加载时按对角线顺序逐块入场
 - **滚动揭示**：`IntersectionObserver` 驱动的分段入场动画，附带无 JS / 无 IO 时的降级
 - **字体**：Anton（展示）· ZCOOL 庆科黄油体（中文标题）· Noto Sans SC（正文）· Spline Sans Mono（标签）
 - **响应式**：桌面双栏 → 移动端单栏，适配 `prefers-reduced-motion`
