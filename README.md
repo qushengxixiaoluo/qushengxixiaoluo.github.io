@@ -32,8 +32,7 @@
 | P03 | [校园集市 Demo](https://github.com/qushengxixiaoluo/Campus_Market_Demo) | Vue · JavaScript | [源代码](https://github.com/qushengxixiaoluo/Campus_Market_Demo) |
 | P04 | [手势粒子特效](https://github.com/qushengxixiaoluo/Particle_Effect_Display) | Three.js · MediaPipe | [在线 Demo](https://is-cau.github.io/Particle_Effect_Display/) |
 | P05 | [拾光手册 · AI 照片日记](https://github.com/qushengxixiaoluo/lifesnap) | Flutter · Anthropic / OpenAI API | [在线 Demo](https://qushengxixiaoluo.github.io/lifesnap/) |
-| P06 | [智能日程 · 事件日历](https://github.com/qushengxixiaoluo/event_calendar) | Flutter · 本地优先 · AI | [源代码](https://github.com/qushengxixiaoluo/event_calendar) |
-| P07 | [面试邀约提醒 Interview Alert](https://github.com/qushengxixiaoluo/Interview_Alert_App) | Flutter · Python · ICS | [在线 Demo](https://qushengxixiaoluo.github.io/Interview_Alert_App/) |
+| P06 | [面试邀约提醒 Interview Alert](https://github.com/qushengxixiaoluo/Interview_Alert_App) | Flutter · Python · ICS | [在线 Demo](https://qushengxixiaoluo.github.io/Interview_Alert_App/) |
 
 ## 🛠 技术实现
 
