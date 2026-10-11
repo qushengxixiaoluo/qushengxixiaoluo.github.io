@@ -25,14 +25,17 @@
 
 ## 📦 产品矩阵
 
+> 前四款为 **AI 原生产品**，置于最前着重介绍。
+
 | # | 项目 | 技术栈 | 体验 |
 |---|------|--------|------|
-| P01 | [情绪陪伴助手](https://github.com/qushengxixiaoluo/Emotion_Companion_Assistant) | Flutter · OpenAI API | [在线 Demo](https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/) |
-| P02 | [诗语 · 古诗词赏析](https://github.com/qushengxixiaoluo/Appreciation_of_Ancient_Chinese_Poetry) | Flutter · 离线优先 | [在线 Demo](https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/) |
-| P03 | [校园集市 Demo](https://github.com/qushengxixiaoluo/Campus_Market_Demo) | Vue · JavaScript | [源代码](https://github.com/qushengxixiaoluo/Campus_Market_Demo) |
-| P04 | [手势粒子特效](https://github.com/qushengxixiaoluo/Particle_Effect_Display) | Three.js · MediaPipe | [在线 Demo](https://is-cau.github.io/Particle_Effect_Display/) |
-| P05 | [拾光手册 · AI 照片日记](https://github.com/qushengxixiaoluo/lifesnap) | Flutter · Anthropic / OpenAI API | [在线 Demo](https://qushengxixiaoluo.github.io/lifesnap/) |
-| P06 | [面试邀约提醒 Interview Alert](https://github.com/qushengxixiaoluo/Interview_Alert_App) | Flutter · Python · ICS | [在线 Demo](https://qushengxixiaoluo.github.io/Interview_Alert_App/) |
+| P01 | [档库 ARCHIVE · 项目归档 + AI 问答](https://github.com/qushengxixiaoluo/Project_Portfolio) | Python · FastAPI · BM25 · Anthropic SDK | [在线 Demo](https://qushengxixiaoluo.github.io/Project_Portfolio/) |
+| P02 | [情绪陪伴助手](https://github.com/qushengxixiaoluo/Emotion_Companion_Assistant) | Flutter · OpenAI / Anthropic API | [在线 Demo](https://qushengxixiaoluo.github.io/Emotion_Companion_Assistant/) |
+| P03 | [拾光手册 · AI 照片日记](https://github.com/qushengxixiaoluo/lifesnap) | Flutter · Anthropic / OpenAI API | [在线 Demo](https://qushengxixiaoluo.github.io/lifesnap/) |
+| P04 | [面试邀约提醒 Interview Alert](https://github.com/qushengxixiaoluo/Interview_Alert_App) | Flutter · Python · ICS | [在线 Demo](https://qushengxixiaoluo.github.io/Interview_Alert_App/) |
+| P05 | [诗语 · 古诗词赏析](https://github.com/qushengxixiaoluo/Appreciation_of_Ancient_Chinese_Poetry) | Flutter · 离线优先 | [在线 Demo](https://qushengxixiaoluo.github.io/Appreciation_of_Ancient_Chinese_Poetry/) |
+| P06 | [校园集市 Demo](https://github.com/qushengxixiaoluo/Campus_Market_Demo) | Vue · JavaScript | [源代码](https://github.com/qushengxixiaoluo/Campus_Market_Demo) |
+| P07 | [手势粒子特效](https://github.com/qushengxixiaoluo/Particle_Effect_Display) | Three.js · MediaPipe | [在线 Demo](https://is-cau.github.io/Particle_Effect_Display/) |
 
 ## 🛠 技术实现
 
